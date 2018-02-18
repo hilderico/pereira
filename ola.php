@@ -1,10 +1,5 @@
 <?php
 
-echo "<html>" . 
-	"<head>" . 
-		"<META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/> " . 
-	"</head>" . 
-	"<body>";
 
 header('Content-Type: text/html; charset=utf-8');
 setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
@@ -144,33 +139,7 @@ function Selecionar_Campos($TABLE,$OPCAO){
 			$y = 0;
 			echo "</tr>";
 		}
-		//
-		// listar os campos
-		//
-		// $RET[$x][$y] = $row["$NomeCampo[$y]"];
-		// $y++;
-		//
-		//
 		
-		//$RET[$x] = $row["Field"];
-		//$x++;
-	}
-	
-	if($OPCAO == mostrar_campo){
-		
-		$Cont = count($RET);
-
-		for($x = 0; $x < $Cont; $x++){
-			echo "Field -> " . $RET[$x] . "<br>";	
-		}
-	}
-	if($OPCAO == titulo_campo){
-		
-		$Cont = count($RET);
-
-		for($x = 0; $x < $Cont; $x++){
-			echo "<th>" . $RET[$x] . "</th>";	
-		}
 	}
 	
 	mysqli_close($conn);	
@@ -203,10 +172,7 @@ Listar_Campos("A002_ESTADOS",titulo_campo);
 echo "</tr>";
 Selecionar_Campos("A002_ESTADOS",tabelando);
 echo "</table>";
-//Selecionar_Campos("A001_PAIS",ocultar_campo);
 
-echo "</body>" . 
-	"</html>";
 
 ?>
 
