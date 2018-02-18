@@ -16,14 +16,16 @@ table, td, th {
 </style>
 ";
 
-echo "<table width=\"300px\" border=\"1px\" border-collapse = \"collapse\" bordercolor=\"#FF0000\">"; 
+echo "<div style=\"overflow: auto; width: 640px; height: 640px\">";
+
+echo "<table>"; 
 echo "<tr>";
-Listar_Campos("A002_ESTADOS",titulo_campo);
+Listar_Campos("A001_PAIS",titulo_campo);
 
 echo "</tr>";
-Selecionar_Campos("A002_ESTADOS",tabelando);
+Selecionar_Campos("A001_PAIS",tabelando);
 echo "</table>";
-
+echo "</div>";
 
 ?>
 
