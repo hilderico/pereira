@@ -11,11 +11,10 @@ define('testando', '3');
 define('tabelando', '4');
 
 
-function Listar_Bases(){
-	$servername = "mdierp.com.br";
-	$username = "mdierpco_ilano";
-	$password = "icf@chkdsk02#";
-
+function Listar_Bases($lservername,$lusername,$lpassword){
+	$servername = $lservername;
+	$username = $lusername;
+	$password = $lpassword;
 
 	$link = mysql_connect($servername, $username, $password);
 	$res = mysql_query("SHOW DATABASES");
@@ -26,11 +25,11 @@ function Listar_Bases(){
 	mysqli_close($link);
 }
 
-function Listar_Tabelas(){
-	$servername = "mdierp.com.br";
-	$username = "mdierpco_ilano";
-	$password = "icf@chkdsk02#";
-	$dbname = "mdierpco_nobre";
+function Listar_Tabelas($lservername,$lusername,$lpassword,$ldbname){
+	$servername = $lservername;
+	$username = $lusername;
+	$password = $lpassword;
+	$dbname = $ldbname;
 
 	// Create connection
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -43,31 +42,18 @@ function Listar_Tabelas(){
 	$res = $conn->query($sql);
 
 	while ($row = $res->fetch_assoc()) {
-    	echo $row["Tables_in_mdierpco_nobre"] . "<br>";
+    	echo $row["Tables_in_$dbname"] . "<br>";
 	}	
 
 	mysqli_close($conn);
 }
 
-function Listar_Campos($TABLE,$OPCAO){
-
-	echo "<form action=\"action_page.php\" target=\"_blank\">";
-	echo "	ServerName:<br>";
-	echo "	<input type=\"text\" name=\"servername\" value=\"nome do servidor\"> <br>";
-	echo "	UserName:<br>";
-	echo "	<input type=\"text\" name=\"username\" value=\"nome do usuário\"> <br>";
-	echo "	Password:<br>";
-	echo "	<input type=\"text\" name=\"password\" value=\"Senha\"> <br>";
-	echo "	DatabaseName:<br>";
-	echo "	<input type=\"text\" name=\"dbname\" value=\"nome do servidor\"> <br>";
-	echo "	<input type=\"submit\" value=\"Submit\"> <br>";
-	echo "</form> <br>";
-
+function Listar_Campos($lservername,$lusername,$lpassword,$ldbname,$TABLE,$OPCAO){
 	
-	$servername = "mdierp.com.br";
-	$username = "mdierpco_ilano";
-	$password = "icf@chkdsk02#";
-	$dbname = "mdierpco_nobre";
+	$servername = $lservername;
+	$username = $lusername;
+	$password = $lpassword;
+	$dbname = $ldbname;
 
 	// Create connection
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -82,7 +68,7 @@ function Listar_Campos($TABLE,$OPCAO){
 	$x = 0;
 		
 	while ($row = $res->fetch_assoc()) {
-    	//echo $row["Field"] . "<br>";
+    		
 		$RET[$x] = $row["Field"];
 		$x++;
 	}
@@ -108,18 +94,18 @@ function Listar_Campos($TABLE,$OPCAO){
 	return $RET;
 }
 
-function Selecionar_Campos($TABLE,$OPCAO){
-	
-	$NomeCampo = Listar_Campos($TABLE,ocultar_campo);
-	$QtdCampo = count($NomeCampo);
-	
-	
+function Selecionar_Campos($lservername,$lusername,$lpassword,$ldbname,$TABLE,$OPCAO){
+
 	// INICIO MYSQL
 	
-	$servername = "mdierp.com.br";
-	$username = "mdierpco_ilano";
-	$password = "icf@chkdsk02#";
-	$dbname = "mdierpco_nobre";
+	$servername = $lservername;
+	$username = $lusername;
+	$password = $lpassword;
+	$dbname = $ldbname;
+	
+	$NomeCampo = Listar_Campos($servername,$username,
+$password,$dbname,$TABLE,ocultar_campo);
+	$QtdCampo = count($NomeCampo);
 
 	// Create connection
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
