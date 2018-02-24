@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', '1');
+
 
 include 'myfunc.php';
 
@@ -25,11 +27,12 @@ echo "<div style=\"overflow: auto; width: 640px; height: 480px\">";
 
 echo "<table>"; 
 echo "<tr>";
-Listar_Campos($servername,$username,$password,$dbname,"A001_PAIS",titulo_campo);
+Listar_Campos($servername,$username,$password,$dbname,"G004_DETALHEPEDIDO ",titulo_campo);
 
 
 echo "</tr>";
-Selecionar_Campos($servername,$username,$password,$dbname,"A001_PAIS",tabelando);
+Selecionar_Campos($servername,$username,$password,$dbname,"G004_DETALHEPEDIDO ",tabelando);
+//Listar_Tabelas($servername,$username,$password,$dbname);
 echo "</table>";
 echo "</div>";
 
