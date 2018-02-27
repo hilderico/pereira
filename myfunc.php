@@ -9,6 +9,8 @@ define('ocultar_campo', '0');
 define('titulo_campo', '2');
 define('testando', '3');
 define('tabelando', '4');
+define('tam_div', '5');
+define('retu_ret', '6');
 
 
 function Listar_Bases($lservername,$lusername,$lpassword){
@@ -48,8 +50,13 @@ function Listar_Tabelas($lservername,$lusername,$lpassword,$ldbname){
 	mysqli_close($conn);
 }
 
-function Listar_Campos($lservername,$lusername,$lpassword,$ldbname,$TABLE,$OPCAO){
-	
+
+
+function Listar_Campos($lservername,$lusername,$lpassword,$ldbname,$TABLE,$OPCAO,$mosdiv){
+	$tamdiv = 0;
+	$temptamdiv = 0;
+
+
 	$servername = $lservername;
 	$username = $lusername;
 	$password = $lpassword;
@@ -69,7 +76,7 @@ function Listar_Campos($lservername,$lusername,$lpassword,$ldbname,$TABLE,$OPCAO
 		
 	while ($row = $res->fetch_assoc()) {
     		
-		$RET[$x] = $row["Field"];
+		$RET[$x] = $row["Field"];		
 		$x++;
 	}
 	
@@ -78,7 +85,8 @@ function Listar_Campos($lservername,$lusername,$lpassword,$ldbname,$TABLE,$OPCAO
 		$Cont = count($RET);
 
 		for($x = 0; $x < $Cont; $x++){
-			echo "Field -> " . $RET[$x] . "<br>";	
+			echo "Field -> " . $RET[$x] . "<br>";
+			$tamdiv = $tamdiv + strlen($RET[$x]);
 		}
 	}
 	if($OPCAO == titulo_campo){
@@ -86,15 +94,35 @@ function Listar_Campos($lservername,$lusername,$lpassword,$ldbname,$TABLE,$OPCAO
 		$Cont = count($RET);
 
 		for($x = 0; $x < $Cont; $x++){
-			echo "<th>" . $RET[$x] . "</th>";	
+			echo "<th>" . $RET[$x] . "</th>";
+			$tamdiv = $tamdiv + strlen($RET[$x]);			
+		}
+	}
+
+	if($OPCAO == ocultar_campo){
+		
+		$Cont = count($RET);
+
+		for($x = 0; $x < $Cont; $x++){
+			$tamdiv = $tamdiv + strlen($RET[$x]);			
 		}
 	}
 	
 	mysqli_close($conn);	
-	return $RET;
+
+	if($mosdiv == tam_div){
+		return $tamdiv;
+
+	}else
+	{
+		return $RET;
+	}
 }
 
-function Selecionar_Campos($lservername,$lusername,$lpassword,$ldbname,$TABLE,$OPCAO){
+function Selecionar_Campos($lservername,$lusername,$lpassword,$ldbname,$TABLE,$OPCAO,$mosdiv){
+	$tamdiv = 0;
+	$temptamdiv = 0;
+
 
 	// INICIO MYSQL
 	
@@ -104,7 +132,7 @@ function Selecionar_Campos($lservername,$lusername,$lpassword,$ldbname,$TABLE,$O
 	$dbname = $ldbname;
 	
 	$NomeCampo = Listar_Campos($servername,$username,
-$password,$dbname,$TABLE,ocultar_campo);
+$password,$dbname,$TABLE,ocultar_campo,retu_ret);
 	$QtdCampo = count($NomeCampo);
 
 	// Create connection
@@ -124,24 +152,38 @@ $password,$dbname,$TABLE,ocultar_campo);
 		if($OPCAO == testando){
 			while($y < $QtdCampo){
 	    			echo $row["$NomeCampo[$y]"];
+					$temptamdiv = $temptamdiv + strlen($row["$NomeCampo[$y]"]);
+					if($tamdiv < $temptamdiv){
+						$tamdiv = $temptamdiv;
+					}	
 				$y++;
 			}
 			$y = 0;
+			$temptamdiv = 0;
 		}
 
 		if($OPCAO == tabelando){
 			echo "<tr>";
 			while($y < $QtdCampo){
 	    			echo utf8_encode("<td>" . $row["$NomeCampo[$y]"] . "</td>");
+					$temptamdiv = $temptamdiv + strlen($row["$NomeCampo[$y]"]);
+					if($tamdiv < $temptamdiv){
+						$tamdiv = $temptamdiv;
+					}	
 				$y++;
 			}
 			$y = 0;
+			$temptamdiv = 0;
 			echo "</tr>";
 		}
 		
 	}
 	
 	mysqli_close($conn);	
+	if($mosdiv == tam_div){
+		return $tamdiv;
+	}
+
 	//return $RET;
 }
 ?>

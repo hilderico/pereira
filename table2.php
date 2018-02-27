@@ -32,10 +32,24 @@
 	</head>
 
 	<body>
+		<?php
+		include 'myfunc.php';
+		$servername = htmlspecialchars($_POST['servername']);
+		$username = htmlspecialchars($_POST['username']);
+		$password = htmlspecialchars($_POST['password']);
+		$dbname = htmlspecialchars($_POST['dbname']);
+		$table = htmlspecialchars($_POST['table']);
+
+		?>
+
+
 		<?php $COL1 = "Ola Ola Ola";		
-		$WID = strlen($COL1);
+		//$WID = strlen($COL1);
+
+		$WID = Listar_Campos($servername,$username,$password,$dbname,$table,ocultar_campo,tam_div);
 		echo "<div style=\"background-color: #6c7ae0; padding:5px; width:" .$WID ."em; text-align: center; color: white; align: center;\">";
-		echo "" .$COL1;
+		//echo "" .$COL1;
+		Listar_Campos($servername,$username,$password,$dbname,$table,titulo_campo,tam_div);
 		echo "</div>";
 		?>
 

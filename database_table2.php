@@ -1,6 +1,6 @@
 <?php
 
-	echo "<form action=\"ola.php\" method=\"post\" target=\"_top\">";
+	echo "<form action=\"table2.php\" method=\"post\" target=\"_top\">";
 	echo "	ServerName:<br>";
 	echo "	<input type='text' name='servername' value='nome do servidor'> <br>";
 	echo "	UserName:<br>";
