@@ -177,6 +177,19 @@ $password,$dbname,$TABLE,ocultar_campo,retu_ret);
 			echo "</tr>";
 		}
 		
+		if($OPCAO == ocultar_campo){
+		
+			while($y < $QtdCampo){				
+				$temptamdiv = $temptamdiv + strlen($row["$NomeCampo[$y]"]);
+				if($tamdiv < $temptamdiv){
+					$tamdiv = $temptamdiv;
+				}	
+				$y++;
+			}
+			$y = 0;
+			$temptamdiv = 0;
+		}
+		
 	}
 	
 	mysqli_close($conn);	
