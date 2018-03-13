@@ -1,0 +1,141 @@
+
+[===============
+
+<div style=" background-color: blue; font-size: 20px; width: 500px;">
+		<div style="margin-left: 10px; float: left; background-color: green; width: 50px;">
+			aaa
+		</div>
+		<div style="float: left; background-color: yellow; width: 50px;">
+			bbb
+		</div>
+		<div style="float: left; background-color: red;">
+			ccc
+		</div>
+		<div style="float: left; background-color: brown;">
+			ddd
+		</div>
+	</div>
+	<br>
+<br>
+	<div style=" background-color: blue; font-size: 20px; width: 500px;">
+		<div style="margin-left: 10px; float: left; background-color: green; width: 50px;">
+			aaa
+		</div>
+		<div style="float: left; background-color: yellow; width: 50px;">
+			bbb
+		</div>
+		<div style="float: left; background-color: red;">
+			ccc
+		</div>
+		<div style="float: left; background-color: brown;">
+			ddd
+		</div>
+	</div>
+
+]=================
+
+[========================
+
+$Col_height = 20px;
+$Col_width = 20px;
+$Col_top = START;
+$Col_left = START;
+$Col_fixtop = $Col_top;
+$Col_fixleft = $Col_left;
+
+================================
+$Col_fixtop = $Col_top;
+$Col_fixleft = $Col_left;
+
+$Col_top = $Col_fixtop + $Col_height;
+$Col_left = $Col_fixleft + $Col_width;
+
+$Col_fixtop = $Col_top;
+$Col_fixleft = $Col_left;
+
+]=======================
+
+campo
+registro
+
+campo 1 | campo 2
+aa | bbb
+
+a[0] --> reg_campo 1 | reg_campo 2
+x++
+a[1] --> reg_campo 1 | reg_campo 2
+x++
+... ate o ultimo registro
+
+
+conex = select * from table
+
+loop(conex){
+	enquanto houver registro ele passa por todas as colunas
+	a[0] --> reg_campo 1 | reg_campo 2
+}
+
+ideia
+para cada loop, deixar um indice fixo
+
+conex = select * from table
+loop(conex){
+	enquanto houver registro ele passa por todas as colunas
+	a[0] --> reg_campo 1 | reg_campo 2
+}
+conex = select * from table
+loop(conex){
+	enquanto houver registro ele passa por todas as colunas
+	a[1] --> reg_campo 1 | reg_campo 2
+}
+
+loop dentro de loop
+
+
+
+qtdcampo = 2;
+loopcont = 0;
+
+loop( enquanto loopcont < qtdcampo){
+	conex = select * from table
+	loop(conex){
+		enquanto houver registro ele passa por todas as colunas
+		a[loopcont] --> reg_campo 1 | reg_campo 2
+	}
+	loopcont++;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
