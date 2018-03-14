@@ -14,7 +14,7 @@
 	$dbname = htmlspecialchars($_POST['dbname']);
 	$table = htmlspecialchars($_POST['table']);
 
-	$tampixl = 13;
+	$tampixl = 15;
 
 	$tamdiv1 = Listar_Campos($servername,$username,$password,$dbname,$table,ocultar_campo,tam_div) * $tampixl;
 	$tamdiv2 = Selecionar_Campos($servername,$username,$password,$dbname,$table,ocultar_campo,tam_div) * $tampixl;
@@ -46,8 +46,8 @@ $DIVCOLOR = array("#f2f2f2", "#ddd");
 	
 ?>
 
-	<div style="position: fixed; width: <?php if($WID > 800){	$WID = 800;	echo $WID; }else{	echo $WID;}
-?>px; height: 600px; background-color: #ff8800; overflow: auto; border-radius: 5px;">
+	<div style="position: fixed; width: <?php if($WID > 800){	$WID = 800;	echo $WID; }else{	echo $WID + 5;}
+?>px; height: 600px; overflow: auto; border-radius: 5px; margin: auto;">
 
 <?php
 		while($PASS_COL < $DIVIDE_COL){
