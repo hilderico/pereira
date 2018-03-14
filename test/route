@@ -55,58 +55,32 @@ $Col_fixleft = $Col_left;
 
 ]=======================
 
-campo
-registro
+[ ========================
+<div style="position: absolute; top: 0px; left: 0px; width: <?php echo ($TAM_PERCOL[0][1] * 15);?>px; height: 20px; background-color: #ff0000; text-align: center; font-size: 15px;">
+		<?php echo $COL[0];?>
+		</div>
+		<div style="position: absolute; top: 0px; left: <?php echo (0 + ($TAM_PERCOL[0][1] * 15));?>px; width: <?php echo ($TAM_PERCOL[1][1] * 15);?>px; height: 20px; background-color: #ffff00; text-align: center; font-size: 15px;">
+		<?php echo $COL[1];?>
+		</div>
 
-campo 1 | campo 2
-aa | bbb
-
-a[0] --> reg_campo 1 | reg_campo 2
-x++
-a[1] --> reg_campo 1 | reg_campo 2
-x++
-... ate o ultimo registro
-
-
-conex = select * from table
-
-loop(conex){
-	enquanto houver registro ele passa por todas as colunas
-	a[0] --> reg_campo 1 | reg_campo 2
-}
-
-ideia
-para cada loop, deixar um indice fixo
-
-conex = select * from table
-loop(conex){
-	enquanto houver registro ele passa por todas as colunas
-	a[0] --> reg_campo 1 | reg_campo 2
-}
-conex = select * from table
-loop(conex){
-	enquanto houver registro ele passa por todas as colunas
-	a[1] --> reg_campo 1 | reg_campo 2
-}
-
-loop dentro de loop
+] =======================
 
 
 
-qtdcampo = 2;
-loopcont = 0;
-
-loop( enquanto loopcont < qtdcampo){
-	conex = select * from table
-	loop(conex){
-		enquanto houver registro ele passa por todas as colunas
-		a[loopcont] --> reg_campo 1 | reg_campo 2
-	}
-	loopcont++;
-}
-
-
-
+while($PASS_REGS < $TOTAL_REGS){
+			while($PASS_COL < $DIVIDE_COL){
+				echo "<div style=\"position: absolute; top: ".$PASS_TOP ."px; left: " .$PASS_LEFT ."px; width: ".($TAM_PERCOL[$PASS_COL][1] * 15)
+."px; height: 20px; background-color: #ff0000; text-align: center; font-size: 15px;\">";
+				echo utf8_encode($REGS[$PASS_REGS][$PASS_COL]);
+				echo "</div>";
+				$PASS_LEFT = $PASS_LEFT + ($TAM_PERCOL[$PASS_COL][1] * 15);
+				$PASS_COL++;
+			}
+			$PASS_COL = 0;
+			$PASS_LEFT = 0;
+			$PASS_TOP = $PASS_TOP + 20;
+			$PASS_REGS++;
+		}
 
 
 
