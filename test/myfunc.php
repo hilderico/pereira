@@ -251,7 +251,6 @@ function Selecionar_Campos_a($lservername,$lusername,$lpassword,$ldbname,$TABLE,
 	$NomeCampo = Listar_Campos($servername,$username,
 $password,$dbname,$TABLE,ocultar_campo,mostrar_return);
 	$QtdCampo = count($NomeCampo);
-echo " QTD CAMPO = ".$QtdCampo ."<br>";
 	// Create connection
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
 	// Check connection
@@ -298,6 +297,11 @@ echo " QTD CAMPO = ".$QtdCampo ."<br>";
 	
 	mysqli_close($conn);	
 	if($mosdiv == tam_div){
+		$y = 0;
+		while($y < $QtdCampo){
+			$tamdiv += $RET[$y][1];
+			$y++;
+		}		
 		return $tamdiv;
 	}
 	if($mosdiv == mostrar_return){
